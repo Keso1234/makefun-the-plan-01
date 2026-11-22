@@ -1,5 +1,7 @@
 import os
 
+MAX_ENTRY_LENGTH = 280
+
 ENTRY = (
     "Day 1: crawl 500 small Shopify stores losing sales, screenshot broken "
     "checkout links and dead buttons, then email owners the proof free and "
@@ -9,8 +11,10 @@ ENTRY = (
 
 
 def main():
-    if not 1 <= len(ENTRY) <= 280 or not ENTRY.strip():
-        raise ValueError("entry must be 1-280 characters, not only whitespace")
+    if not 1 <= len(ENTRY) <= MAX_ENTRY_LENGTH or not ENTRY.strip():
+        raise ValueError(
+            f"entry must be 1-{MAX_ENTRY_LENGTH} characters, not only whitespace"
+        )
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(ENTRY)
